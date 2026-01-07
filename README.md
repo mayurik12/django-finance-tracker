@@ -14,6 +14,7 @@ Goal tracking with progress calculation
 
 User-specific data isolation (each user sees only their data)
 📁 Project Structure
+
 django-finance-tracker/
 │
 ├── Finance/
