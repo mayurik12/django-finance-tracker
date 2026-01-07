@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+
+    <div class="max-w-md w-full bg-white p-8 rounded-xl shadow-lg space-y-6">
+
+        <div>
+            <h2 class="text-3xl font-bold text-gray-900 text-center">
+                Finance Tracker
+            </h2>
+            <p class="mt-2 text-sm text-gray-600 text-center">
+                Please sign in to your account
+            </p>
+        </div>
+
+        <form method="post" class="space-y-5">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div>
+                <label for="id_username"
+                       class="block text-sm font-medium text-gray-700">
+                    Username
+                </label>
+                <input type="text" name="username" id="id_username" required
+                       class="mt-1 block w-full px-4 py-3 border border-gray-300
+                              rounded-lg shadow-sm focus:outline-none
+                              focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <!-- Password -->
+            <div>
+                <label for="id_password"
+                       class="block text-sm font-medium text-gray-700">
+                    Password
+                </label>
+                <input type="password" name="password" id="id_password" required
+                       class="mt-1 block w-full px-4 py-3 border border-gray-300
+                              rounded-lg shadow-sm focus:outline-none
+                              focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <!-- Error messages -->
+            {% if form.non_field_errors %}
+                <div class="text-red-600 text-sm">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <!-- Submit -->
+            <button type="submit"
+                class="w-full py-3 px-4 rounded-lg bg-indigo-600 text-white
+                       font-medium hover:bg-indigo-700 transition">
+                Sign In
+            </button>
+        </form>
+        <div class = "text-center space-y-2">
+            <p class = "text-sm text gray-600">
+                Don't have an account?
+                <a href="{% url 'register' %}" class = 'fonr-medium
+                text-indigo-600 hover:text-indigo-500 transition
+                duration-150 ease-in-out'>
+                    Register here
+                </a>
+            </p>
+            <p class = 'text-sm text-gray-500'>
+                <a href="{% url "password_reset" %}" class = "font-medium
+                text-indigo-600 hover:text-indigo-500 transition
+                duration-150 ease-in-out">
+                    Forget password?
+                </a>
+            </p>
+        </div>
+
+    </div>
+
+</div>
+{% endblock content %}
